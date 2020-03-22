@@ -27,41 +27,41 @@ public class UserController {
 		return "hello";
 	}
 
-	@RequestMapping("/show")
-	public ModelAndView show(){
-		UserDO userDO = new UserDO();
-		userDO.setName("cl");
-		userDO.setAge(20);
-
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("show");
-		modelAndView.addObject("userInfo", userDO);
-		return modelAndView;
-	}
-
-	@RequestMapping("/getUser")
-	@ResponseBody
-	public UserDTO getUser() {
-		UserDTO userDO = new UserDTO();
-		userDO.setName("cl");
-		userDO.setAge(20);
-		return userDO;
-	}
-	@RequestMapping("/get/{id}")
-	public String getUserId(@PathVariable("id") String id){
-		System.out.println(id);
-		return "hello";
-	}
-
-	@RequestMapping("/insertUser")
-	public String insertUser(String name, int age) {
-		System.out.println("hello 世界");
-		UserDO userDO = new UserDO();
-		userDO.setName(name);
-		userDO.setAge(age);
-		userDAO.insert(userDO);
-		return "hello";
-	}
+//	@RequestMapping("/show")
+//	public ModelAndView show(){
+//		UserDO userDO = new UserDO();
+//		userDO.setName("cl");
+//		userDO.setAge(20);
+//
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.setViewName("show");
+//		modelAndView.addObject("userInfo", userDO);
+//		return modelAndView;
+//	}
+//
+//	@RequestMapping("/getUser")
+//	@ResponseBody
+//	public UserDTO getUser() {
+//		UserDTO userDO = new UserDTO();
+//		userDO.setName("cl");
+//		userDO.setAge(20);
+//		return userDO;
+//	}
+//	@RequestMapping("/get/{id}")
+//	public String getUserId(@PathVariable("id") String id){
+//		System.out.println(id);
+//		return "hello";
+//	}
+//
+//	@RequestMapping("/insertUser")
+//	public String insertUser(String name, int age) {
+//		System.out.println("hello 世界");
+//		UserDO userDO = new UserDO();
+//		userDO.setName(name);
+//		userDO.setAge(age);
+//		userDAO.insert(userDO);
+//		return "hello";
+//	}
 
 }
 

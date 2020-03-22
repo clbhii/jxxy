@@ -15,7 +15,7 @@ public class UserController {
     @RequestMapping("/insert")
     public String insert() {
         UserDO userDO = new UserDO();
-        userDO.setName("cl11");
+        userDO.setName("张三");
         userDO.setAge(12);
         userDAO.insert(userDO);
         return "ok";
