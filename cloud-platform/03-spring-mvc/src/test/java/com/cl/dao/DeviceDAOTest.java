@@ -25,10 +25,13 @@ public class DeviceDAOTest {
     private static ObjectMapper objectMapper = new ObjectMapper();
     @Test
     public void insert() {
-        DeviceDO deviceDO = new DeviceDO();
-        deviceDO.setDevNo("dd");
-        deviceDO.setDevName("设备111");
-        deviceDAO.insert(deviceDO);
+        for(int i = 0; i <7; i++) {
+            DeviceDO deviceDO = new DeviceDO();
+            deviceDO.setDevNo("gxdc"+i);
+            deviceDO.setDevName("共享单车" +i);
+            deviceDAO.insert(deviceDO);
+        }
+
     }
     @Test
     public void updateByPrimaryKey() {
