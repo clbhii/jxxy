@@ -18,8 +18,8 @@ public class DeviceDAOTest {
     @Test
     public void insert() {
         DeviceDO deviceDO = new DeviceDO();
-        deviceDO.setDevNo("dd");
-        deviceDO.setDevName("设备111");
+        deviceDO.setDevNo("z003");
+        deviceDO.setDevName("智能电灯003");
         deviceDAO.insert(deviceDO);
     }
 }
