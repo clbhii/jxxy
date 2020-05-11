@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cl.dao.DeviceDAO" >
+  <resultMap id="BaseResultMap" type="com.cl.model.DeviceDO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="dev_no" property="devNo" jdbcType="VARCHAR" />
+    <result column="dev_name" property="devName" jdbcType="VARCHAR" />
+    <result column="dev_status" property="devStatus" jdbcType="INTEGER" />
+    <result column="date_create" property="dateCreate" jdbcType="TIMESTAMP" />
+    <result column="date_update" property="dateUpdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dev_no, dev_name,dev_status, date_create, date_update
+  </sql>
+
+  <insert id="insert" parameterType="com.cl.model.DeviceDO" >
+    insert into device (id, dev_no, dev_name,
+      date_create, date_update)
+    values (#{id,jdbcType=BIGINT},#{devNo,jdbcType=VARCHAR}, #{devName,jdbcType=VARCHAR},
+      #{dateCreate,jdbcType=TIMESTAMP}, #{dateUpdate,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.cl.model.DeviceDO" >
+    update device
+    set dev_no = #{devNo,jdbcType=VARCHAR},
+      dev_name = #{devName,jdbcType=VARCHAR},
+      dev_status = #{devStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+         <include refid="Base_Column_List" />
+    from device
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <sql id="criteria_sql">
+    <where>
+      <if test="devNo != null">
+        dev_no like '%${devNo}%'
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="map" >
+    select
+        <include refid="Base_Column_List" />
+    from device
+    <include refid="criteria_sql"/>
+    <if test="page != null">
+      limit #{page.start},#{page.pageSize}
+    </if>
+  </select>
+  <select id="countList" resultType="int" parameterType="map">
+    SELECT
+    count(1) count
+    FROM
+    device
+    <include refid="criteria_sql"/>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from device
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <select id="selectByDevNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from device
+    where dev_no = #{devNo,jdbcType=VARCHAR}
+  </select>
+</mapper>
