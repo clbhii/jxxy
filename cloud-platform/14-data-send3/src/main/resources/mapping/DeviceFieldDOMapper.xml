@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cl.dao.DeviceFieldDAO" >
+  <resultMap id="BaseResultMap" type="com.cl.model.DeviceFieldDO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="dev_id" property="devId" jdbcType="BIGINT" />
+    <result column="field_key" property="fieldKey" jdbcType="VARCHAR" />
+    <result column="field_value" property="fieldValue" jdbcType="VARCHAR" />
+    <result column="date_create" property="dateCreate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dev_id, field_key, field_value, date_create
+  </sql>
+  <select id="selectByDevId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from device_field
+    where dev_id = #{devId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByDevId" parameterType="java.lang.Long" >
+    delete from device_field
+    where dev_id = #{devId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cl.model.DeviceFieldDO" >
+    insert into device_field (id, dev_id, field_key, 
+      field_value, date_create)
+    values (#{id,jdbcType=BIGINT}, #{devId,jdbcType=BIGINT}, #{fieldKey,jdbcType=VARCHAR}, 
+      #{fieldValue,jdbcType=VARCHAR}, #{dateCreate,jdbcType=TIMESTAMP})
+  </insert>
+</mapper>
